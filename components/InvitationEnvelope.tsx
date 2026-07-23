@@ -109,11 +109,11 @@ export default function InvitationEnvelope({
 
     window.setTimeout(() => {
       setPhase("exiting");
-    }, 4800);
+    }, 4200);
 
     window.setTimeout(() => {
       onOpened();
-    }, 6400);
+    }, 5600);
   };
 
   const copy = invitation.envelope;
