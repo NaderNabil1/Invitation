@@ -22,8 +22,15 @@ export const WEDDING_DETAILS = {
   },
 } as const;
 
+/** Countdown target as Africa/Cairo wall-clock time (no offset suffix). */
+export const WEDDING_COUNTDOWN_AT = "2026-08-23T16:00:00";
+
 export const invitation = {
   initials: "N & V",
+  initialsWord: {
+    en: "Nader & Veronia",
+    ar: "نادر وفيرونيا",
+  },
   groom: {
     en: "Nader Nabil",
     ar: "نادر نبيل",
@@ -39,7 +46,7 @@ export const invitation = {
   meta: {
     title: {
       en: "N & V — Wedding Invitation",
-      ar: "ن و ف — دعوة زفاف",
+      ar: "نادر وفيرونيا — دعوة زفاف",
     },
     description: {
       en: "You are joyfully invited to celebrate the wedding of Nader Nabil and Veronia George.",
@@ -47,9 +54,21 @@ export const invitation = {
     },
   },
   envelope: {
+    eyebrow: {
+      en: "Society News",
+      ar: "خبر سعيد",
+    },
+    headline: {
+      en: "An Unmissable Event",
+      ar: "مناسبة لا تُفوَّت",
+    },
+    subhead: {
+      en: "The Union of Nader & Veronia",
+      ar: "زفاف نادر وفيرونيا",
+    },
     openLabel: {
-      en: "Open Invitation",
-      ar: "افتح الدعوة",
+      en: "Tap the seal to open",
+      ar: "اضغط على الختم لفتح الدعوة",
     },
   },
   languageToggle: {
@@ -57,6 +76,14 @@ export const invitation = {
     arLabel: "العربية",
   },
   hero: {
+    scripture: {
+      en: [
+        "For now I have chosen and sanctified this house, that My name may be there forever; and My eyes and My heart will be there perpetually. (2 Chronicles 7:16)",
+      ],
+      ar: [
+        "الآنَ قَدِ اخْتَرْتُ وَقَدَّسْتُ هذَا الْبَيْتَ لِيَكُونَ اسْمِي فِيهِ إِلَى الأَبَدِ، وَتَكُونُ عَيْنَايَ وَقَلْبِي هُنَاكَ كُلَّ الأَيَّامِ (سفر أخبار الأيام الثاني 7: 16)",
+      ],
+    },
     preamble: {
       en: "Together with their families",
       ar: "بكل الفرح والمحبة، تتشرف العائلتان بدعوتكم لحضور حفل زفاف",
@@ -78,6 +105,40 @@ export const invitation = {
     receptionLabel: {
       en: "Reception",
       ar: "الاستقبال",
+    },
+  },
+  countdown: {
+    label: {
+      en: "Counting Down",
+      ar: "العد التنازلي",
+    },
+    days: {
+      en: "Days",
+      ar: "أيام",
+    },
+    hours: {
+      en: "Hours",
+      ar: "ساعات",
+    },
+    minutes: {
+      en: "Minutes",
+      ar: "دقائق",
+    },
+    seconds: {
+      en: "Seconds",
+      ar: "ثوانٍ",
+    },
+    arrivedLabel: {
+      en: "It's Time",
+      ar: "حان الموعد",
+    },
+    arrived: {
+      en: "The celebration begins",
+      ar: "بدأت الفرحة",
+    },
+    arrivedSub: {
+      en: "Today, love takes the aisle",
+      ar: "اليوم يكتمل الفرح",
     },
   },
   church: {

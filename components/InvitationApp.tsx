@@ -7,10 +7,13 @@ import {
   type Language,
 } from "@/data/invitation";
 import EventLocationCard from "@/components/EventLocationCard";
+import FloralMotif from "@/components/FloralMotif";
 import InvitationEnvelope from "@/components/InvitationEnvelope";
 import InvitationHero from "@/components/InvitationHero";
 import LanguageToggle from "@/components/LanguageToggle";
 import LocationGuideModal from "@/components/LocationGuideModal";
+import SectionHeading from "@/components/SectionHeading";
+import WeddingCountdown from "@/components/WeddingCountdown";
 
 const STORAGE_KEY = "nv-invitation-language";
 const LANGUAGE_EVENT = "nv-language-change";
@@ -45,6 +48,16 @@ function persistLanguage(next: Language) {
     // Ignore storage write errors
   }
   window.dispatchEvent(new Event(LANGUAGE_EVENT));
+}
+
+function FloralSectionDivider() {
+  return (
+    <div className="floral-divider" aria-hidden="true">
+      <FloralMotif variant="bloom" className="floral-divider__bloom" />
+      <FloralMotif variant="divider" className="floral-divider__vine" />
+      <FloralMotif variant="roots" className="floral-divider__roots" />
+    </div>
+  );
 }
 
 export default function InvitationApp() {
@@ -82,34 +95,75 @@ export default function InvitationApp() {
         }`}
         aria-hidden={!opened}
       >
-        <header className="sticky top-0 z-40 border-b border-[var(--gold-muted)]/40 bg-[var(--ivory)]/85 backdrop-blur-md">
-          <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:px-5 sm:py-3.5">
-            <p className="font-display text-base tracking-[0.22em] text-[var(--gold)] sm:text-lg">
-              {invitation.initials}
+        <div className="invitation-botanicals" aria-hidden="true">
+          <FloralMotif
+            variant="corner-tl"
+            className="invitation-botanicals__corner invitation-botanicals__corner--tl"
+          />
+          <FloralMotif
+            variant="corner-tr"
+            className="invitation-botanicals__corner invitation-botanicals__corner--tr"
+          />
+          <FloralMotif
+            variant="side-left"
+            className="invitation-botanicals__side invitation-botanicals__side--l1"
+          />
+          <FloralMotif
+            variant="side-right"
+            className="invitation-botanicals__side invitation-botanicals__side--r1"
+          />
+          <FloralMotif
+            variant="side-left"
+            className="invitation-botanicals__side invitation-botanicals__side--l2"
+          />
+          <FloralMotif
+            variant="side-right"
+            className="invitation-botanicals__side invitation-botanicals__side--r2"
+          />
+          <FloralMotif
+            variant="corner-bl"
+            className="invitation-botanicals__corner invitation-botanicals__corner--bl"
+          />
+          <FloralMotif
+            variant="corner-br"
+            className="invitation-botanicals__corner invitation-botanicals__corner--br"
+          />
+        </div>
+
+        <header className="sticky top-0 z-40 border-b border-[var(--gold-muted)]/35 bg-[var(--ivory-mid)]/90 backdrop-blur-md">
+          <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3.5 sm:px-5 sm:py-4">
+            <p
+              className={`text-[var(--gold)] ${
+                isArabic
+                  ? "font-arabic text-xl sm:text-2xl"
+                  : "font-script text-2xl sm:text-3xl"
+              }`}
+            >
+              {invitation.initialsWord[language]}
             </p>
             <LanguageToggle language={language} onChange={persistLanguage} />
           </div>
         </header>
 
-        <main className="flex-1 w-full overflow-x-hidden">
+        <main className="invitation-content flex-1 w-full overflow-x-hidden">
           <InvitationHero language={language} />
 
-          <section className="mx-auto w-full max-w-xl px-4 py-6 text-center sm:px-5 sm:py-10">
-            <h2
-              className={`text-sm tracking-[0.28em] text-[var(--gold)] ${
-                isArabic ? "" : "font-display uppercase"
-              }`}
-            >
+          <FloralSectionDivider />
+
+          <section className="invite-section mx-auto w-full max-w-xl px-4 text-center sm:px-5">
+            <SectionHeading useDisplayFont={!isArabic} size="sm">
               {invitation.dateSection.label[language]}
-            </h2>
+            </SectionHeading>
+
             <p
-              className={`mt-3 text-xl text-[var(--ink)] sm:mt-4 sm:text-2xl md:text-3xl ${
+              className={`mt-8 text-2xl text-[var(--ink)] sm:mt-10 sm:text-3xl md:text-4xl ${
                 isArabic ? "" : "font-display"
               }`}
             >
               {WEDDING_DETAILS.date[language]}
             </p>
-            <div className="mt-5 space-y-2 text-sm text-[var(--ink-muted)] sm:mt-6 sm:text-base">
+
+            <div className="mt-8 space-y-3 text-base text-[var(--ink-muted)] sm:mt-10 sm:space-y-4 sm:text-lg">
               <p>
                 <span className="text-[var(--gold-deep)]">
                   {invitation.dateSection.ceremonyLabel[language]}:
@@ -125,7 +179,11 @@ export default function InvitationApp() {
             </div>
           </section>
 
-          <div className="section-rule mx-auto max-w-xs" aria-hidden="true" />
+          <FloralSectionDivider />
+
+          <WeddingCountdown language={language} />
+
+          <FloralSectionDivider />
 
           <EventLocationCard
             icon="church"
@@ -138,7 +196,7 @@ export default function InvitationApp() {
             useDisplayFont={!isArabic}
           />
 
-          <div className="section-rule mx-auto max-w-xs" aria-hidden="true" />
+          <FloralSectionDivider />
 
           <EventLocationCard
             icon="hall"
@@ -160,10 +218,15 @@ export default function InvitationApp() {
             }
           />
 
-          <section className="mx-auto w-full max-w-xl px-4 py-10 text-center sm:px-5 sm:py-16">
-            <div className="gold-divider mx-auto mb-6 sm:mb-8" aria-hidden="true" />
+          <FloralSectionDivider />
+
+          <section className="invite-section mx-auto w-full max-w-xl px-4 text-center sm:px-5">
+            <FloralMotif
+              variant="bloom"
+              className="mx-auto mb-6 h-auto w-10 text-[var(--gold)] opacity-70 sm:mb-8"
+            />
             <p
-              className={`text-base leading-relaxed text-[var(--ink-muted)] sm:text-lg md:text-xl ${
+              className={`text-lg leading-relaxed text-[var(--ink-muted)] sm:text-xl md:text-2xl ${
                 isArabic ? "" : "font-display italic"
               }`}
             >
@@ -172,12 +235,22 @@ export default function InvitationApp() {
           </section>
         </main>
 
-        <footer className="border-t border-[var(--gold-muted)]/40 px-4 py-8 text-center sm:px-5 sm:py-10">
-          <p className="text-xs tracking-[0.2em] text-[var(--ink-muted)] uppercase">
+        <footer className="relative z-1 border-t border-[var(--gold-muted)]/35 px-4 py-12 text-center sm:px-5 sm:py-16">
+          <FloralMotif
+            variant="roots"
+            className="mx-auto mb-6 h-auto w-40 text-[var(--gold)] opacity-45"
+          />
+          <p className="text-xs tracking-[0.22em] text-[var(--ink-muted)] uppercase">
             {invitation.footer.withLove[language]}
           </p>
-          <p className="mt-3 font-display text-2xl tracking-[0.28em] text-[var(--gold)] sm:text-3xl">
-            {invitation.initials}
+          <p
+            className={`mt-4 text-[var(--gold)] ${
+              isArabic
+                ? "font-arabic text-2xl sm:text-3xl"
+                : "font-script text-3xl sm:text-4xl"
+            }`}
+          >
+            {invitation.initialsWord[language]}
           </p>
         </footer>
       </div>

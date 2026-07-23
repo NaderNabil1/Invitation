@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import SectionHeading from "@/components/SectionHeading";
 
 type EventLocationCardProps = {
   title: string;
@@ -16,7 +17,7 @@ function ChurchIcon() {
   return (
     <svg
       viewBox="0 0 64 64"
-      className="h-14 w-14 text-[var(--gold)]"
+      className="h-16 w-16 text-[var(--gold)] sm:h-[4.5rem] sm:w-[4.5rem]"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.4"
@@ -36,7 +37,7 @@ function HallIcon() {
   return (
     <svg
       viewBox="0 0 64 64"
-      className="h-14 w-14 text-[var(--gold)]"
+      className="h-16 w-16 text-[var(--gold)] sm:h-[4.5rem] sm:w-[4.5rem]"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.4"
@@ -63,33 +64,25 @@ export default function EventLocationCard({
   useDisplayFont = true,
 }: EventLocationCardProps) {
   return (
-    <section className="mx-auto w-full max-w-xl px-4 py-8 text-center sm:px-5 sm:py-12">
-      <div className="flex justify-center">
+    <section className="invite-section mx-auto w-full max-w-xl px-4 text-center sm:px-5">
+      <div className="mb-6 flex justify-center sm:mb-8">
         {icon === "church" ? <ChurchIcon /> : <HallIcon />}
       </div>
 
-      <h2
-        className={`mt-4 text-xl tracking-wide text-[var(--ink)] sm:mt-5 sm:text-2xl md:text-3xl ${
-          useDisplayFont ? "font-display" : ""
-        }`}
-      >
-        {title}
-      </h2>
+      <SectionHeading useDisplayFont={useDisplayFont}>{title}</SectionHeading>
 
-      <div className="gold-divider-sm mx-auto my-4 sm:my-5" aria-hidden="true" />
-
-      <p className="text-sm leading-relaxed text-[var(--ink-muted)] sm:text-base md:text-lg">
+      <p className="mt-8 text-base leading-relaxed text-[var(--ink-muted)] sm:mt-10 sm:text-lg md:text-xl">
         {description}
       </p>
 
       {timeLabel && timeValue ? (
-        <p className="mt-4 text-sm tracking-wide text-[var(--gold-deep)] sm:text-base">
+        <p className="mt-6 text-base tracking-wide text-[var(--gold-deep)] sm:mt-8 sm:text-lg">
           <span className="font-medium">{timeLabel}:</span>{" "}
           <span>{timeValue}</span>
         </p>
       ) : null}
 
-      <div className="mt-6 flex w-full flex-col items-center gap-3 sm:mt-7 sm:flex-row sm:justify-center">
+      <div className="mt-9 flex w-full flex-col items-center gap-3.5 sm:mt-11 sm:flex-row sm:justify-center">
         <a
           href={mapUrl}
           target="_blank"
