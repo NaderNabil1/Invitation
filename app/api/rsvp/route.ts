@@ -1,11 +1,8 @@
 import { randomUUID } from "crypto";
-import { promises as fs } from "fs";
-import path from "path";
 import { NextResponse } from "next/server";
+import { appendRsvpEntry, type RsvpKind } from "@/lib/rsvp-store";
 
 export const runtime = "nodejs";
-
-type RsvpKind = "coming" | "not-coming";
 
 type RsvpPayload = {
   kind?: unknown;
@@ -14,53 +11,14 @@ type RsvpPayload = {
   language?: unknown;
 };
 
-type ComingEntry = {
-  id: string;
-  name: string;
-  message: string;
-  language: "en" | "ar";
-  submittedAt: string;
-};
-
-type DeclineEntry = {
-  id: string;
-  name: string;
-  reason: string;
-  language: "en" | "ar";
-  submittedAt: string;
-};
-
-const DATA_DIR = path.join(process.cwd(), "data", "rsvp");
 const MAX_NAME = 120;
 const MAX_TEXT = 1000;
-
-function fileFor(kind: RsvpKind) {
-  return path.join(
-    DATA_DIR,
-    kind === "coming" ? "coming.json" : "not-coming.json",
-  );
-}
 
 function cleanText(value: unknown, max: number): string | null {
   if (typeof value !== "string") return null;
   const trimmed = value.trim().replace(/\s+/g, " ");
   if (!trimmed || trimmed.length > max) return null;
   return trimmed;
-}
-
-async function readEntries<T>(filePath: string): Promise<T[]> {
-  try {
-    const raw = await fs.readFile(filePath, "utf8");
-    const parsed: unknown = JSON.parse(raw);
-    return Array.isArray(parsed) ? (parsed as T[]) : [];
-  } catch (error) {
-    const code =
-      error && typeof error === "object" && "code" in error
-        ? (error as { code?: string }).code
-        : undefined;
-    if (code === "ENOENT") return [];
-    throw error;
-  }
 }
 
 export async function POST(request: Request) {
@@ -72,7 +30,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const kind = body.kind;
+  const kind = body.kind as RsvpKind | unknown;
   if (kind !== "coming" && kind !== "not-coming") {
     return NextResponse.json({ error: "Invalid kind" }, { status: 400 });
   }
@@ -88,26 +46,32 @@ export async function POST(request: Request) {
     );
   }
 
-  await fs.mkdir(DATA_DIR, { recursive: true });
-
-  const filePath = fileFor(kind);
   const submittedAt = new Date().toISOString();
   const id = randomUUID();
 
-  if (kind === "coming") {
-    const entries = await readEntries<ComingEntry>(filePath);
-    entries.push({ id, name, message, language, submittedAt });
-    await fs.writeFile(filePath, `${JSON.stringify(entries, null, 2)}\n`, "utf8");
-  } else {
-    const entries = await readEntries<DeclineEntry>(filePath);
-    entries.push({
-      id,
-      name,
-      reason: message,
-      language,
-      submittedAt,
-    });
-    await fs.writeFile(filePath, `${JSON.stringify(entries, null, 2)}\n`, "utf8");
+  try {
+    if (kind === "coming") {
+      await appendRsvpEntry("coming", {
+        id,
+        name,
+        message,
+        language,
+        submittedAt,
+      });
+    } else {
+      await appendRsvpEntry("not-coming", {
+        id,
+        name,
+        reason: message,
+        language,
+        submittedAt,
+      });
+    }
+  } catch (error) {
+    const detail =
+      error instanceof Error ? error.message : "Failed to save RSVP";
+    console.error("[rsvp]", detail);
+    return NextResponse.json({ error: detail }, { status: 500 });
   }
 
   return NextResponse.json({ ok: true });
