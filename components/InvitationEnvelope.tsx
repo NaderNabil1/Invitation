@@ -3,6 +3,7 @@
 import { useState, useSyncExternalStore } from "react";
 import LanguageToggle from "@/components/LanguageToggle";
 import { invitation, type Language } from "@/data/invitation";
+import { playInvitationMusic } from "@/lib/invitation-music";
 
 type InvitationEnvelopeProps = {
   language: Language;
@@ -62,6 +63,8 @@ export default function InvitationEnvelope({
 
   const handleOpen = () => {
     if (phase !== "idle") return;
+
+    playInvitationMusic();
 
     if (reducedMotion) {
       onOpened();
