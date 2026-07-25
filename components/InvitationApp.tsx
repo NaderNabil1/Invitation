@@ -86,6 +86,7 @@ export default function InvitationApp() {
       {!opened ? (
         <InvitationEnvelope
           language={language}
+          onLanguageChange={persistLanguage}
           onOpened={() => setOpened(true)}
         />
       ) : null}

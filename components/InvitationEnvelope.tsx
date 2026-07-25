@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useSyncExternalStore, type CSSProperties } from "react";
+import LanguageToggle from "@/components/LanguageToggle";
 import { invitation, type Language } from "@/data/invitation";
 
 type InvitationEnvelopeProps = {
   language: Language;
+  onLanguageChange: (language: Language) => void;
   onOpened: () => void;
 };
 
@@ -88,6 +90,7 @@ function WaxRose() {
 
 export default function InvitationEnvelope({
   language,
+  onLanguageChange,
   onOpened,
 }: InvitationEnvelopeProps) {
   const [phase, setPhase] = useState<"idle" | "opening" | "exiting">("idle");
@@ -132,6 +135,14 @@ export default function InvitationEnvelope({
       <div className="envelope-overlay__wash" aria-hidden="true" />
       <div className="envelope-overlay__glow" aria-hidden="true" />
       <div className="envelope-overlay__vignette" aria-hidden="true" />
+
+      <div
+        className={`absolute top-4 end-4 z-20 transition-opacity duration-500 sm:top-5 sm:end-5 ${
+          isOpening ? "pointer-events-none opacity-0" : "opacity-100"
+        }`}
+      >
+        <LanguageToggle language={language} onChange={onLanguageChange} />
+      </div>
 
       <div className="envelope-motes" aria-hidden="true">
         {MOTES.map((mote) => (

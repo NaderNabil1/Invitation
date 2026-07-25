@@ -212,7 +212,7 @@ export const invitation = {
     },
     acceptTitle: {
       en: "Leave a Blessing",
-      ar: "اتركوا لنا بركة",
+      ar: "اتركوا لنا رسالة تهنئة",
     },
     acceptSubtitle: {
       en: "Share your name and a celebration message for our guestbook.",
