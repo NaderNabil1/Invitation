@@ -354,105 +354,19 @@ body {
 /* ——— Envelope (Regency / sealed-back) ——— */
 
 .envelope-overlay {
-  background:
-    radial-gradient(ellipse 85% 55% at 50% 18%, rgba(255, 252, 247, 0.95), transparent 60%),
-    radial-gradient(ellipse 55% 45% at 12% 78%, rgba(184, 148, 77, 0.12), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 90% 72%, rgba(196, 155, 90, 0.1), transparent 50%),
-    linear-gradient(168deg, #faf6ef 0%, #f1e6d4 38%, #e8d7bb 100%);
-  transition: opacity 1.6s ease, visibility 1.6s ease, transform 1.6s ease;
+  background: #f4ebe0;
+  transition: opacity 0.85s ease, visibility 0.85s ease, transform 0.85s ease;
 }
 
 .envelope-overlay--exit {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: scale(1.05);
-}
-
-.envelope-overlay__wash {
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 3px,
-      rgba(143, 112, 54, 0.015) 3px,
-      rgba(143, 112, 54, 0.015) 4px
-    );
-  pointer-events: none;
-  opacity: 0.7;
-}
-
-.envelope-overlay__glow {
-  position: absolute;
-  left: 50%;
-  top: 40%;
-  width: min(26rem, 78vw);
-  height: min(32rem, 72vh);
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse,
-    rgba(220, 188, 118, 0.32) 0%,
-    rgba(184, 148, 77, 0.12) 38%,
-    transparent 70%
-  );
-  filter: blur(10px);
-  animation: envelope-glow-breathe 5s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.envelope-overlay__vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 72% 68% at 50% 46%,
-    transparent 42%,
-    rgba(70, 48, 22, 0.16) 100%
-  );
-  pointer-events: none;
-}
-
-.envelope-motes {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.envelope-mote {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 248, 230, 0.95), rgba(184, 148, 77, 0.55));
-  box-shadow: 0 0 8px rgba(212, 179, 106, 0.55);
-  animation: envelope-mote-drift 7s ease-in-out infinite;
-  opacity: 0.55;
-}
-
-.envelope-petals {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.envelope-petal {
-  position: absolute;
-  top: -8%;
-  width: 0.7rem;
-  height: 0.95rem;
-  border-radius: 60% 60% 55% 55% / 70% 70% 40% 40%;
-  background:
-    radial-gradient(circle at 35% 30%, rgba(255, 250, 240, 0.95), rgba(232, 210, 170, 0.75) 55%, rgba(196, 160, 100, 0.5));
-  opacity: 0.35;
-  filter: blur(0.2px);
-  animation-name: envelope-petal-fall;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  transform: scale(1.04);
 }
 
 .envelope-stage {
+  width: min(58rem, 98vw, calc((100dvh - 3.25rem) * 3 / 4.15));
   animation: envelope-float 5.5s ease-in-out infinite;
 }
 
@@ -513,7 +427,7 @@ body {
   border-radius: 50%;
   background: radial-gradient(ellipse, rgba(44, 36, 28, 0.3), transparent 72%);
   filter: blur(12px);
-  transition: transform 2.2s ease, opacity 2.2s ease;
+  transition: transform 1.1s ease, opacity 1.1s ease;
   z-index: 0;
 }
 
@@ -687,7 +601,7 @@ body {
   position: absolute;
   z-index: 4;
   transform-style: preserve-3d;
-  transition: transform 1.8s cubic-bezier(0.4, 0.05, 0.15, 1);
+  transition: transform 0.95s cubic-bezier(0.4, 0.05, 0.15, 1);
   filter: drop-shadow(0 6px 12px rgba(80, 60, 30, 0.12));
   pointer-events: none;
 }
@@ -723,7 +637,7 @@ body {
   width: 52%;
   transform-origin: left center;
   z-index: 4;
-  transition-delay: 200ms;
+  transition-delay: 80ms;
 }
 
 .envelope__flap--left .envelope__flap-face {
@@ -739,7 +653,7 @@ body {
   width: 52%;
   transform-origin: right center;
   z-index: 4;
-  transition-delay: 200ms;
+  transition-delay: 80ms;
 }
 
 .envelope__flap--right .envelope__flap-face {
@@ -751,22 +665,22 @@ body {
 .envelope__flap--top.envelope__flap--open {
   transform: rotateX(172deg);
   z-index: 0;
-  transition-delay: 750ms;
+  transition-delay: 1550ms;
 }
 
 .envelope__flap--left.envelope__flap--open {
   transform: rotateY(-158deg);
   z-index: 0;
-  transition-delay: 1100ms;
+  transition-delay: 1700ms;
 }
 
 .envelope__flap--right.envelope__flap--open {
   transform: rotateY(158deg);
   z-index: 0;
-  transition-delay: 1100ms;
+  transition-delay: 1700ms;
 }
 
-/* Invitation card: tucked inside when closed, rises through the V when open */
+/* Invitation card: stays nested in the pocket and fades in when open */
 .envelope__card {
   position: absolute;
   left: 11%;
@@ -784,13 +698,13 @@ body {
   box-shadow:
     0 10px 24px rgba(80, 60, 30, 0.12),
     inset 0 0 0 1px rgba(255, 255, 255, 0.65);
-  transform: translateY(48%) scale(0.97);
+  transform: translateY(12%) scale(0.98);
   opacity: 0;
   pointer-events: none;
   transition:
-    transform 1.8s cubic-bezier(0.22, 1, 0.36, 1) 1.5s,
-    opacity 1.2s ease 1.5s,
-    box-shadow 1.8s ease 1.5s;
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.8s,
+    opacity 0.7s ease 1.8s,
+    box-shadow 0.7s ease 1.8s;
 }
 
 .envelope__card-frame {
@@ -807,11 +721,11 @@ body {
 }
 
 .envelope__card--reveal {
-  transform: translateY(-34%) scale(1);
+  transform: translateY(12%) scale(1);
   opacity: 1;
   box-shadow:
-    0 26px 48px rgba(80, 60, 30, 0.22),
-    0 0 0 1px rgba(184, 148, 77, 0.22),
+    0 14px 28px rgba(80, 60, 30, 0.14),
+    0 0 0 1px rgba(184, 148, 77, 0.18),
     inset 0 0 0 1px rgba(255, 255, 255, 0.75);
 }
 
@@ -950,7 +864,7 @@ body {
   text-align: center;
   gap: 0.2rem;
   pointer-events: none;
-  transition: opacity 1s ease, transform 1s ease;
+  transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 .envelope__copy--hide {
@@ -1714,7 +1628,7 @@ body {
   }
 
   .envelope__card--reveal {
-    transform: translateY(-24%);
+    transform: translateY(12%);
     opacity: 1;
   }
 

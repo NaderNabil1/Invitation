@@ -24,21 +24,6 @@ function getServerReducedMotionSnapshot() {
   return false;
 }
 
-const MOTES = [
-  { left: "6%", top: "14%", delay: "0s", size: "3px" },
-  { left: "14%", top: "68%", delay: "1.1s", size: "2px" },
-  { left: "22%", top: "32%", delay: "2.3s", size: "4px" },
-  { left: "36%", top: "10%", delay: "0.5s", size: "2px" },
-  { left: "48%", top: "78%", delay: "1.7s", size: "3px" },
-  { left: "58%", top: "18%", delay: "2.9s", size: "2px" },
-  { left: "70%", top: "54%", delay: "0.8s", size: "4px" },
-  { left: "82%", top: "28%", delay: "2s", size: "2px" },
-  { left: "10%", top: "46%", delay: "3.2s", size: "3px" },
-  { left: "90%", top: "62%", delay: "1.4s", size: "2px" },
-  { left: "28%", top: "86%", delay: "2.6s", size: "3px" },
-  { left: "74%", top: "88%", delay: "0.3s", size: "2px" },
-] as const;
-
 const SPARKS = [
   { x: "0rem", y: "-3.2rem" },
   { x: "1.6rem", y: "-2.8rem" },
@@ -54,15 +39,6 @@ const SPARKS = [
   { x: "-1rem", y: "-3rem" },
   { x: "0.8rem", y: "-1.2rem" },
   { x: "-0.9rem", y: "1.1rem" },
-] as const;
-
-const PETALS = [
-  { left: "12%", delay: "0s", duration: "11s", drift: "-18px", rotate: "25deg" },
-  { left: "28%", delay: "2.4s", duration: "13s", drift: "22px", rotate: "-18deg" },
-  { left: "46%", delay: "1.1s", duration: "10s", drift: "-12px", rotate: "32deg" },
-  { left: "63%", delay: "3.6s", duration: "12s", drift: "16px", rotate: "-28deg" },
-  { left: "78%", delay: "0.7s", duration: "14s", drift: "-20px", rotate: "15deg" },
-  { left: "88%", delay: "4.2s", duration: "11s", drift: "10px", rotate: "-22deg" },
 ] as const;
 
 function WaxRose() {
@@ -110,13 +86,14 @@ export default function InvitationEnvelope({
 
     setPhase("opening");
 
+    // Seal keeps original ~1.6s pace; flaps/card/exit run faster after it.
     window.setTimeout(() => {
       setPhase("exiting");
-    }, 4200);
+    }, 2800);
 
     window.setTimeout(() => {
       onOpened();
-    }, 5600);
+    }, 3600);
   };
 
   const copy = invitation.envelope;
@@ -125,17 +102,13 @@ export default function InvitationEnvelope({
 
   return (
     <div
-      className={`envelope-overlay fixed inset-0 z-50 flex items-center justify-center overflow-hidden px-4 sm:px-5 ${
+      className={`envelope-overlay fixed inset-0 z-50 flex items-center justify-center overflow-hidden px-1 sm:px-2 ${
         phase === "exiting" ? "envelope-overlay--exit" : ""
       }`}
       role="dialog"
       aria-modal="true"
       aria-label={copy.openLabel[language]}
     >
-      <div className="envelope-overlay__wash" aria-hidden="true" />
-      <div className="envelope-overlay__glow" aria-hidden="true" />
-      <div className="envelope-overlay__vignette" aria-hidden="true" />
-
       <div
         className={`absolute top-4 end-4 z-20 transition-opacity duration-500 sm:top-5 sm:end-5 ${
           isOpening ? "pointer-events-none opacity-0" : "opacity-100"
@@ -144,43 +117,9 @@ export default function InvitationEnvelope({
         <LanguageToggle language={language} onChange={onLanguageChange} />
       </div>
 
-      <div className="envelope-motes" aria-hidden="true">
-        {MOTES.map((mote) => (
-          <span
-            key={`${mote.left}-${mote.top}`}
-            className="envelope-mote"
-            style={{
-              left: mote.left,
-              top: mote.top,
-              width: mote.size,
-              height: mote.size,
-              animationDelay: mote.delay,
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="envelope-petals" aria-hidden="true">
-        {PETALS.map((petal) => (
-          <span
-            key={`${petal.left}-${petal.delay}`}
-            className="envelope-petal"
-            style={
-              {
-                left: petal.left,
-                animationDelay: petal.delay,
-                animationDuration: petal.duration,
-                "--petal-drift": petal.drift,
-                "--petal-rotate": petal.rotate,
-              } as CSSProperties
-            }
-          />
-        ))}
-      </div>
-
       <button
         type="button"
-        className={`envelope-stage group relative w-full max-w-[min(20.5rem,90vw)] cursor-pointer border-0 bg-transparent p-0 sm:max-w-[23rem] ${
+        className={`envelope-stage group relative cursor-pointer border-0 bg-transparent p-0 ${
           isOpening ? "envelope-stage--opening" : ""
         }`}
         onClick={handleOpen}
@@ -331,7 +270,7 @@ export default function InvitationEnvelope({
         </div>
 
         <div
-          className={`envelope-cta mt-7 flex flex-col items-center gap-2.5 transition-opacity duration-500 sm:mt-8 ${
+          className={`envelope-cta mt-4 flex flex-col items-center gap-2.5 transition-opacity duration-300 sm:mt-5 ${
             isOpening ? "opacity-0" : "opacity-100"
           }`}
         >
