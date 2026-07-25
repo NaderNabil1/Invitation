@@ -106,10 +106,6 @@ function CelebrationMessage({ language }: { language: Language }) {
         ))}
       </div>
 
-      <p className="countdown-celebrate__initials font-display text-sm tracking-[0.35em] text-[var(--gold)] sm:text-base">
-        {invitation.initials}
-      </p>
-
       <div className="gold-divider mx-auto my-4 sm:my-5" aria-hidden="true" />
 
       <p
