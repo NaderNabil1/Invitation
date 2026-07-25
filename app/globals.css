@@ -20,6 +20,8 @@
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
   --font-script: var(--font-script);
+  --font-names: var(--font-names);
+  --font-couple: var(--font-couple);
   --font-arabic: var(--font-arabic);
 }
 
@@ -46,6 +48,14 @@ body {
 
 .font-script {
   font-family: var(--font-script), "Segoe Script", cursive;
+}
+
+.font-names {
+  font-family: var(--font-names), "Segoe Script", cursive;
+}
+
+.font-couple {
+  font-family: var(--font-couple), "Didot", "Times New Roman", serif;
 }
 
 .font-arabic {
@@ -1378,6 +1388,274 @@ body {
   }
 }
 
+/* ——— RSVP ——— */
+
+.rsvp-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.rsvp-section__glow {
+  position: absolute;
+  inset: 18% 12% auto;
+  height: 55%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(184, 148, 77, 0.12),
+    transparent 70%
+  );
+  pointer-events: none;
+  animation: rsvp-glow-pulse 5.5s ease-in-out infinite;
+}
+
+.rsvp-section__float-bloom {
+  animation: rsvp-bloom-float 4.2s ease-in-out infinite;
+}
+
+.rsvp-section__accept {
+  animation: rsvp-accept-soft 3.6s ease-in-out infinite;
+}
+
+.rsvp-modal {
+  animation: rsvp-modal-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(184, 148, 77, 0.08), transparent 65%),
+    linear-gradient(180deg, var(--ivory) 0%, var(--ivory-deep) 100%);
+}
+
+.rsvp-modal__backdrop {
+  animation: rsvp-fade-in 280ms ease both;
+}
+
+.rsvp-modal__petals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.rsvp-petal {
+  position: absolute;
+  width: 0.7rem;
+  height: 1.05rem;
+  border-radius: 60% 40% 60% 40%;
+  background: linear-gradient(
+    145deg,
+    rgba(184, 148, 77, 0.55),
+    rgba(143, 112, 54, 0.28)
+  );
+  opacity: 0;
+  animation: rsvp-petal-drift 9s linear infinite;
+}
+
+.rsvp-petal--1 {
+  left: 12%;
+  top: -8%;
+  animation-delay: 0s;
+  animation-duration: 8.5s;
+}
+
+.rsvp-petal--2 {
+  left: 28%;
+  top: -10%;
+  width: 0.55rem;
+  height: 0.85rem;
+  animation-delay: 1.4s;
+  animation-duration: 10s;
+}
+
+.rsvp-petal--3 {
+  left: 48%;
+  top: -6%;
+  animation-delay: 2.8s;
+  animation-duration: 9.2s;
+}
+
+.rsvp-petal--4 {
+  left: 66%;
+  top: -12%;
+  width: 0.65rem;
+  height: 1rem;
+  animation-delay: 0.7s;
+  animation-duration: 11s;
+}
+
+.rsvp-petal--5 {
+  left: 80%;
+  top: -8%;
+  animation-delay: 3.6s;
+  animation-duration: 8.8s;
+}
+
+.rsvp-petal--6 {
+  left: 38%;
+  top: -14%;
+  width: 0.5rem;
+  height: 0.75rem;
+  animation-delay: 5s;
+  animation-duration: 10.5s;
+}
+
+.rsvp-field {
+  width: 100%;
+  border: 1px solid var(--gold-muted);
+  border-radius: 0.85rem;
+  background: rgba(255, 253, 249, 0.85);
+  color: var(--ink);
+  padding: 0.75rem 0.9rem;
+  font-size: 1rem;
+  line-height: 1.45;
+  outline: none;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.rsvp-field::placeholder {
+  color: color-mix(in srgb, var(--ink-muted) 72%, transparent);
+}
+
+.rsvp-field:hover {
+  border-color: color-mix(in srgb, var(--gold) 55%, var(--gold-muted));
+}
+
+.rsvp-field:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(184, 148, 77, 0.18);
+  background: #fffef9;
+}
+
+.rsvp-field:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.rsvp-field--area {
+  resize: vertical;
+  min-height: 7rem;
+  max-height: 14rem;
+}
+
+.rsvp-thanks {
+  animation: rsvp-thanks-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rsvp-thanks__bloom {
+  animation: rsvp-bloom-pop 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes rsvp-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes rsvp-bloom-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes rsvp-accept-soft {
+  0%,
+  100% {
+    box-shadow: 0 8px 20px rgba(143, 112, 54, 0.22);
+  }
+  50% {
+    box-shadow: 0 10px 28px rgba(143, 112, 54, 0.34);
+  }
+}
+
+@keyframes rsvp-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes rsvp-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rsvp-petal-drift {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  12% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(18px, 110vh, 0) rotate(220deg);
+  }
+}
+
+@keyframes rsvp-thanks-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rsvp-bloom-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.55) rotate(-8deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@media (max-width: 639px) {
+  .rsvp-modal {
+    animation-name: rsvp-modal-in-mobile;
+  }
+
+  @keyframes rsvp-modal-in-mobile {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1411,7 +1689,15 @@ body {
   .countdown-celebrate__initials,
   .countdown-celebrate__title,
   .countdown-celebrate__sub,
-  .countdown-celebrate__sparkles span {
+  .countdown-celebrate__sparkles span,
+  .rsvp-section__glow,
+  .rsvp-section__float-bloom,
+  .rsvp-section__accept,
+  .rsvp-modal,
+  .rsvp-modal__backdrop,
+  .rsvp-petal,
+  .rsvp-thanks,
+  .rsvp-thanks__bloom {
     animation: none !important;
   }
 
@@ -1434,7 +1720,8 @@ body {
 
   .envelope__sparks,
   .envelope-petals,
-  .countdown-celebrate__confetti {
+  .countdown-celebrate__confetti,
+  .rsvp-modal__petals {
     display: none;
   }
 }

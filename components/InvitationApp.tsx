@@ -12,6 +12,7 @@ import InvitationEnvelope from "@/components/InvitationEnvelope";
 import InvitationHero from "@/components/InvitationHero";
 import LanguageToggle from "@/components/LanguageToggle";
 import LocationGuideModal from "@/components/LocationGuideModal";
+import RsvpSection from "@/components/RsvpSection";
 import SectionHeading from "@/components/SectionHeading";
 import WeddingCountdown from "@/components/WeddingCountdown";
 
@@ -136,7 +137,7 @@ export default function InvitationApp() {
               className={`text-[var(--gold)] ${
                 isArabic
                   ? "font-arabic text-xl sm:text-2xl"
-                  : "font-script text-2xl sm:text-3xl"
+                  : "font-names text-3xl sm:text-4xl"
               }`}
             >
               {invitation.initialsWord[language]}
@@ -220,6 +221,8 @@ export default function InvitationApp() {
 
           <FloralSectionDivider />
 
+          <RsvpSection language={language} />
+
           <section className="invite-section mx-auto w-full max-w-xl px-4 text-center sm:px-5">
             <FloralMotif
               variant="bloom"
@@ -247,7 +250,7 @@ export default function InvitationApp() {
             className={`mt-4 text-[var(--gold)] ${
               isArabic
                 ? "font-arabic text-2xl sm:text-3xl"
-                : "font-script text-3xl sm:text-4xl"
+                : "font-names text-4xl sm:text-5xl"
             }`}
           >
             {invitation.initialsWord[language]}

@@ -40,18 +40,28 @@ export default function InvitationHero({ language }: InvitationHeroProps) {
       </p>
 
       <h1
-        className={`mt-8 flex flex-col items-center gap-3 text-[2.35rem] leading-[1.15] text-[var(--ink)] sm:mt-10 sm:gap-4 sm:text-5xl md:text-6xl ${
-          isArabic ? "font-arabic" : "font-display"
+        className={`mt-8 flex flex-col items-center gap-3 text-[var(--ink)] sm:mt-10 sm:gap-4 ${
+          isArabic
+            ? "font-arabic text-[2.35rem] leading-[1.15] sm:text-5xl md:text-6xl"
+            : "font-couple text-[2.15rem] leading-[1.2] tracking-[0.03em] sm:text-[3.1rem] md:text-[3.6rem]"
         }`}
       >
         <span>{invitation.groom[language]}</span>
         <span
-          className={`text-[var(--gold)] ${
-            isArabic ? "font-display text-2xl sm:text-3xl" : "font-script text-4xl sm:text-5xl md:text-6xl"
-          }`}
+          className="flex w-full items-center justify-center gap-4 text-[var(--gold)] sm:gap-5"
           aria-hidden="true"
         >
-          {andLabel}
+          <span className="h-px w-10 bg-[linear-gradient(to_right,transparent,var(--gold-muted))] sm:w-16" />
+          <span
+            className={
+              isArabic
+                ? "font-arabic text-2xl leading-none sm:text-3xl"
+                : "font-names text-4xl leading-none sm:text-5xl"
+            }
+          >
+            {andLabel}
+          </span>
+          <span className="h-px w-10 bg-[linear-gradient(to_left,transparent,var(--gold-muted))] sm:w-16" />
         </span>
         <span>{invitation.bride[language]}</span>
       </h1>

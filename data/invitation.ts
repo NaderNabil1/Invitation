@@ -193,6 +193,100 @@ export const invitation = {
       ar: "رسم توضيحي أنيق يوضح الطريق إلى قاعات حياة في المنتزه مع معالم مثل الكورنيش وشيراتون المنتزه وشارع الملك.",
     },
   },
+  rsvp: {
+    sectionTitle: {
+      en: "Will You Join Us?",
+      ar: "هل ستشاركونا؟",
+    },
+    prompt: {
+      en: "Please let us know if you will share this day with us.",
+      ar: "نرجو إخبارنا إن كنتم ستشاركونا هذا اليوم.",
+    },
+    acceptLabel: {
+      en: "Joyfully Accept",
+      ar: "سأحضر بكل فرح",
+    },
+    declineLabel: {
+      en: "Regretfully Decline",
+      ar: "أعتذر عن الحضور",
+    },
+    acceptTitle: {
+      en: "Leave a Blessing",
+      ar: "اتركوا لنا بركة",
+    },
+    acceptSubtitle: {
+      en: "Share your name and a celebration message for our guestbook.",
+      ar: "اكتبوا اسمكم ورسالة تهنئة في دفتر فرحتنا.",
+    },
+    declineTitle: {
+      en: "We'll Miss You",
+      ar: "سنفتقدكم",
+    },
+    declineSubtitle: {
+      en: "Please share your name and a short note — we understand.",
+      ar: "نرجو كتابة اسمكم وكلمة قصيرة — نتفهم ذلك.",
+    },
+    nameLabel: {
+      en: "Your name",
+      ar: "الاسم",
+    },
+    namePlaceholder: {
+      en: "Full name",
+      ar: "الاسم بالكامل",
+    },
+    messageLabel: {
+      en: "Celebration message",
+      ar: "رسالة التهنئة",
+    },
+    messagePlaceholder: {
+      en: "Write your warm wishes for us …",
+      ar: "اكتبوا تهنئتكم لنا…",
+    },
+    reasonLabel: {
+      en: "Your note",
+      ar: "رسالتكم",
+    },
+    reasonPlaceholder: {
+      en: "Share a kind note or reason…",
+      ar: "اكتبوا كلمة لطيفة أو سبب الاعتذار…",
+    },
+    submitLabel: {
+      en: "Send with love",
+      ar: "أرسلوا بكل حب",
+    },
+    submittingLabel: {
+      en: "Sending…",
+      ar: "جاري الإرسال…",
+    },
+    closeLabel: {
+      en: "Close",
+      ar: "إغلاق",
+    },
+    thankAcceptTitle: {
+      en: "Thank you!",
+      ar: "شكرًا لكم!",
+    },
+    thankAcceptBody: {
+      en: "Your words bloom in our guestbook. We cannot wait to celebrate with you.",
+      ar: "كلماتكم تزهر في دفتر فرحتنا. نتشوق للاحتفال معكم.",
+    },
+    thankDeclineTitle: {
+      en: "Thank you for letting us know",
+      ar: "شكرًا لإخبارنا",
+    },
+    thankDeclineBody: {
+      en: "You remain in our hearts. We hope to celebrate with you another time.",
+      ar: "تبقون في قلوبنا. نأمل أن نفرح معكم في مناسبة أخرى.",
+    },
+    errorMessage: {
+      en: "Something went wrong. Please try again.",
+      ar: "حدث خطأ. نرجو المحاولة مرة أخرى.",
+    },
+    requiredHint: {
+      en: "Please fill in both fields.",
+      ar: "نرجو تعبئة الحقلين.",
+    },
+  },
   closing: {
     en: "We cannot wait to celebrate this special day with you.",
     ar: "يسعدنا أن تشاركونا فرحتنا في هذا اليوم المميز.",

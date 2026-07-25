@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import {
   Cormorant_Garamond,
   Great_Vibes,
+  Allura,
+  Bodoni_Moda,
   Lora,
   Amiri,
 } from "next/font/google";
@@ -19,6 +21,20 @@ const greatVibes = Great_Vibes({
   variable: "--font-script",
   subsets: ["latin"],
   weight: ["400"],
+  display: "swap",
+});
+
+const allura = Allura({
+  variable: "--font-names",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
+
+const bodoni = Bodoni_Moda({
+  variable: "--font-couple",
+  subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -56,7 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${greatVibes.variable} ${lora.variable} ${amiri.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${greatVibes.variable} ${allura.variable} ${bodoni.variable} ${lora.variable} ${amiri.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">{children}</body>
