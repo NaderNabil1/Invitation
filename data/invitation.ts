@@ -194,29 +194,33 @@ export const invitation = {
     },
   },
   rsvp: {
+    badge: {
+      en: "RSVP",
+      ar: "تأكيد الحضور",
+    },
     sectionTitle: {
       en: "Will You Join Us?",
       ar: "هل ستشاركونا؟",
     },
     prompt: {
-      en: "Please let us know if you will share this day with us.",
-      ar: "نرجو إخبارنا إن كنتم ستشاركونا هذا اليوم.",
+      en: "Kindly confirm your attendance — your reply means the world to us.",
+      ar: "نرجو تأكيد حضوركم — ردّكم يهمّنا كثيرًا.",
     },
     acceptLabel: {
-      en: "Joyfully Accept",
-      ar: "سأحضر بكل فرح",
+      en: "Yes, I'll Be There",
+      ar: "نعم، سأحضر",
     },
     declineLabel: {
-      en: "Regretfully Decline",
-      ar: "أعتذر عن الحضور",
+      en: "Sadly, I Can't",
+      ar: "أعتذر، لن أتمكن",
     },
     acceptTitle: {
-      en: "Leave a Blessing",
-      ar: "اتركوا لنا رسالة تهنئة",
+      en: "Wonderful — you're coming!",
+      ar: "رائع — سنفرح بحضوركم!",
     },
     acceptSubtitle: {
-      en: "Share your name and a celebration message for our guestbook.",
-      ar: "اكتبوا اسمكم ورسالة تهنئة في دفتر فرحتنا.",
+      en: "Tell us your name so we can welcome you, and leave a warm wish if you'd like.",
+      ar: "اكتبوا اسمكم لنرحّب بكم، واتركوا تهنئة دافئة إن أحببتم.",
     },
     declineTitle: {
       en: "We'll Miss You",
@@ -235,8 +239,8 @@ export const invitation = {
       ar: "الاسم بالكامل",
     },
     messageLabel: {
-      en: "Celebration message",
-      ar: "رسالة التهنئة",
+      en: "A warm wish",
+      ar: "تهنئة دافئة",
     },
     messagePlaceholder: {
       en: "Write your warm wishes for us …",
@@ -251,8 +255,8 @@ export const invitation = {
       ar: "اكتبوا كلمة لطيفة أو سبب الاعتذار…",
     },
     submitLabel: {
-      en: "Send with love",
-      ar: "أرسلوا بكل حب",
+      en: "Confirm reply",
+      ar: "تأكيد الرد",
     },
     submittingLabel: {
       en: "Sending…",
@@ -263,12 +267,12 @@ export const invitation = {
       ar: "إغلاق",
     },
     thankAcceptTitle: {
-      en: "Thank you!",
-      ar: "شكرًا لكم!",
+      en: "You're on our list!",
+      ar: "تم تسجيل حضوركم!",
     },
     thankAcceptBody: {
-      en: "Your words bloom in our guestbook. We cannot wait to celebrate with you.",
-      ar: "كلماتكم تزهر في دفتر فرحتنا. نتشوق للاحتفال معكم.",
+      en: "We've received your reply. We cannot wait to celebrate with you.",
+      ar: "وصلنا ردّكم. نتشوق للاحتفال معكم.",
     },
     thankDeclineTitle: {
       en: "Thank you for letting us know",

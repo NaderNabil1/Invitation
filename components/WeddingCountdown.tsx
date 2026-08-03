@@ -117,7 +117,7 @@ function CelebrationMessage({ language }: { language: Language }) {
       </p>
 
       <p
-        className={`countdown-celebrate__sub mx-auto mt-3 max-w-sm text-sm leading-relaxed text-[var(--ink-muted)] sm:mt-4 sm:text-base ${
+        className={`countdown-celebrate__sub mx-auto mt-3 max-w-sm text-base leading-relaxed text-[var(--ink-muted)] sm:mt-4 sm:text-lg ${
           isArabic ? "" : "font-display italic"
         }`}
       >
@@ -188,7 +188,7 @@ export default function WeddingCountdown({ language }: WeddingCountdownProps) {
             >
               {formatUnit(unit.value, language)}
             </span>
-            <span className="mt-3 text-[0.7rem] tracking-[0.16em] text-[var(--ink-muted)] uppercase sm:mt-3.5 sm:text-xs">
+            <span className="mt-3 text-xs tracking-[0.16em] text-[var(--ink-muted)] uppercase sm:mt-3.5 sm:text-sm">
               {unit.label}
             </span>
           </div>

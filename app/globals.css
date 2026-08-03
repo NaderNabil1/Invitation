@@ -1231,29 +1231,140 @@ body {
 
 .rsvp-section {
   position: relative;
+}
+
+.rsvp-section__panel {
+  position: relative;
   overflow: hidden;
+  padding: 2.35rem 1.35rem 2.5rem;
+  border-radius: 1.35rem;
+  background:
+    linear-gradient(
+      165deg,
+      rgba(255, 252, 246, 0.92) 0%,
+      rgba(243, 234, 215, 0.55) 48%,
+      rgba(250, 246, 239, 0.88) 100%
+    );
+  box-shadow:
+    0 0 0 1px rgba(184, 148, 77, 0.22),
+    0 18px 42px rgba(143, 112, 54, 0.1);
+  animation: rsvp-panel-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (min-width: 640px) {
+  .rsvp-section__panel {
+    padding: 3rem 2.5rem 3.15rem;
+  }
+}
+
+.rsvp-section__frame {
+  position: absolute;
+  inset: 0.7rem;
+  border: 1px solid rgba(184, 148, 77, 0.28);
+  border-radius: 1rem;
+  pointer-events: none;
+}
+
+.rsvp-section__frame::before,
+.rsvp-section__frame::after {
+  content: "";
+  position: absolute;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-color: var(--gold);
+  border-style: solid;
+  opacity: 0.7;
+}
+
+.rsvp-section__frame::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1.5px 0 0 1.5px;
+}
+
+.rsvp-section__frame::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1.5px 1.5px 0;
 }
 
 .rsvp-section__glow {
   position: absolute;
-  inset: 18% 12% auto;
-  height: 55%;
+  inset: 8% 8% auto;
+  height: 58%;
   border-radius: 50%;
   background: radial-gradient(
     ellipse at center,
-    rgba(184, 148, 77, 0.12),
-    transparent 70%
+    rgba(184, 148, 77, 0.18),
+    transparent 72%
   );
   pointer-events: none;
   animation: rsvp-glow-pulse 5.5s ease-in-out infinite;
 }
 
+.rsvp-section__badge {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0.35rem 0.95rem;
+  border: 1px solid rgba(184, 148, 77, 0.45);
+  border-radius: 9999px;
+  background: rgba(255, 252, 246, 0.72);
+  color: var(--gold-deep);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  animation: rsvp-badge-in 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+:lang(ar) .rsvp-section__badge {
+  letter-spacing: 0.06em;
+  text-transform: none;
+  font-size: 0.85rem;
+}
+
+.rsvp-section__title {
+  position: relative;
+  margin: 1.1rem 0 0;
+  color: var(--ink);
+  font-size: clamp(2rem, 7vw, 3.15rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+  animation: rsvp-title-in 750ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+:lang(ar) .rsvp-section__title {
+  letter-spacing: 0.01em;
+  font-size: clamp(1.85rem, 6.5vw, 2.85rem);
+}
+
+.rsvp-section__prompt {
+  position: relative;
+  animation: rsvp-prompt-in 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rsvp-section__actions {
+  position: relative;
+}
+
 .rsvp-section__float-bloom {
+  position: relative;
   animation: rsvp-bloom-float 4.2s ease-in-out infinite;
 }
 
 .rsvp-section__accept {
+  min-width: min(100%, 15.5rem);
+  min-height: 3rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
   animation: rsvp-accept-soft 3.6s ease-in-out infinite;
+}
+
+.rsvp-section__decline {
+  min-width: min(100%, 15.5rem);
+  min-height: 3rem;
 }
 
 .rsvp-modal {
@@ -1384,6 +1495,48 @@ body {
 
 .rsvp-thanks__bloom {
   animation: rsvp-bloom-pop 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes rsvp-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rsvp-badge-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes rsvp-title-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.65rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rsvp-prompt-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes rsvp-glow-pulse {
@@ -1530,6 +1683,10 @@ body {
   .countdown-celebrate__title,
   .countdown-celebrate__sub,
   .countdown-celebrate__sparkles span,
+  .rsvp-section__panel,
+  .rsvp-section__badge,
+  .rsvp-section__title,
+  .rsvp-section__prompt,
   .rsvp-section__glow,
   .rsvp-section__float-bloom,
   .rsvp-section__accept,

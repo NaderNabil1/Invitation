@@ -152,20 +152,24 @@ export default function InvitationApp() {
 
           <FloralSectionDivider />
 
+          <WeddingCountdown language={language} />
+
+          <FloralSectionDivider />
+
           <section className="invite-section mx-auto w-full max-w-xl px-4 text-center sm:px-5">
             <SectionHeading useDisplayFont={!isArabic} size="sm">
               {invitation.dateSection.label[language]}
             </SectionHeading>
 
             <p
-              className={`mt-8 text-2xl text-[var(--ink)] sm:mt-10 sm:text-3xl md:text-4xl ${
+              className={`mt-8 text-3xl text-[var(--ink)] sm:mt-10 sm:text-4xl md:text-5xl ${
                 isArabic ? "" : "font-display"
               }`}
             >
               {WEDDING_DETAILS.date[language]}
             </p>
 
-            <div className="mt-8 space-y-3 text-base text-[var(--ink-muted)] sm:mt-10 sm:space-y-4 sm:text-lg">
+            <div className="mt-8 space-y-3 text-lg text-[var(--ink-muted)] sm:mt-10 sm:space-y-4 sm:text-xl">
               <p>
                 <span className="text-[var(--gold-deep)]">
                   {invitation.dateSection.ceremonyLabel[language]}:
@@ -180,10 +184,6 @@ export default function InvitationApp() {
               </p>
             </div>
           </section>
-
-          <FloralSectionDivider />
-
-          <WeddingCountdown language={language} />
 
           <FloralSectionDivider />
 
@@ -230,7 +230,7 @@ export default function InvitationApp() {
               className="mx-auto mb-6 h-auto w-10 text-[var(--gold)] opacity-70 sm:mb-8"
             />
             <p
-              className={`text-lg leading-relaxed text-[var(--ink-muted)] sm:text-xl md:text-2xl ${
+              className={`text-xl leading-relaxed text-[var(--ink-muted)] sm:text-2xl md:text-3xl ${
                 isArabic ? "" : "font-display italic"
               }`}
             >
@@ -244,7 +244,7 @@ export default function InvitationApp() {
             variant="roots"
             className="mx-auto mb-6 h-auto w-40 text-[var(--gold)] opacity-45"
           />
-          <p className="text-xs tracking-[0.22em] text-[var(--ink-muted)] uppercase">
+          <p className="text-sm tracking-[0.22em] text-[var(--ink-muted)] uppercase">
             {invitation.footer.withLove[language]}
           </p>
           <p

@@ -71,12 +71,12 @@ export default function EventLocationCard({
 
       <SectionHeading useDisplayFont={useDisplayFont}>{title}</SectionHeading>
 
-      <p className="mt-8 text-base leading-relaxed text-[var(--ink-muted)] sm:mt-10 sm:text-lg md:text-xl">
+      <p className="mt-8 text-lg leading-relaxed text-[var(--ink-muted)] sm:mt-10 sm:text-xl md:text-2xl">
         {description}
       </p>
 
       {timeLabel && timeValue ? (
-        <p className="mt-6 text-base tracking-wide text-[var(--gold-deep)] sm:mt-8 sm:text-lg">
+        <p className="mt-6 text-lg tracking-wide text-[var(--gold-deep)] sm:mt-8 sm:text-xl">
           <span className="font-medium">{timeLabel}:</span>{" "}
           <span>{timeValue}</span>
         </p>
