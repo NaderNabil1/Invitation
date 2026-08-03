@@ -11,7 +11,7 @@ export function playInvitationMusic() {
   audio = new Audio(MUSIC_SRC);
   audio.preload = "auto";
   audio.loop = false;
-  audio.volume = 0.85;
+  audio.volume = 0.5;
   audio.currentTime = 0;
 
   const playPromise = audio.play();
