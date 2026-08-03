@@ -76,7 +76,7 @@ export default function InvitationHero({ language }: InvitationHeroProps) {
 
       <FloralMotif
         variant="roots"
-        className="mx-auto mt-12 h-auto w-[min(12rem,55vw)] text-[var(--gold)] opacity-50 sm:mt-14"
+        className="mx-auto mt-6 h-auto w-[min(12rem,55vw)] text-[var(--gold)] opacity-50 sm:mt-8"
       />
     </section>
   );

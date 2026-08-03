@@ -143,18 +143,18 @@ body {
 
 .invite-section {
   position: relative;
-  padding-block: 3.25rem;
+  padding-block: 1.75rem;
 }
 
 @media (min-width: 640px) {
   .invite-section {
-    padding-block: 4.75rem;
+    padding-block: 2.5rem;
   }
 }
 
 @media (min-width: 768px) {
   .invite-section {
-    padding-block: 5.5rem;
+    padding-block: 3rem;
   }
 }
 
@@ -219,9 +219,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.2rem;
   color: var(--gold);
-  padding-block: 0.5rem;
+  padding-block: 0.15rem;
 }
 
 .floral-divider__bloom {
