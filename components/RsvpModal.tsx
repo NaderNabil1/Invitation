@@ -94,6 +94,7 @@ export default function RsvpModal({
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
+    if (phase === "submitting") return;
 
     const trimmedName = name.trim();
     const trimmedMessage = message.trim();
