@@ -1347,6 +1347,8 @@ body {
 
 .rsvp-section__actions {
   position: relative;
+  z-index: 1;
+  margin-inline: auto;
 }
 
 .rsvp-section__float-bloom {
@@ -1355,16 +1357,18 @@ body {
 }
 
 .rsvp-section__accept {
-  min-width: min(100%, 15.5rem);
   min-height: 3rem;
   font-size: 0.95rem;
   letter-spacing: 0.05em;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   animation: rsvp-accept-soft 3.6s ease-in-out infinite;
 }
 
 .rsvp-section__decline {
-  min-width: min(100%, 15.5rem);
   min-height: 3rem;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .rsvp-modal {
@@ -1372,10 +1376,45 @@ body {
   background-image:
     radial-gradient(ellipse 80% 50% at 50% 0%, rgba(184, 148, 77, 0.08), transparent 65%),
     linear-gradient(180deg, var(--ivory) 0%, var(--ivory-deep) 100%);
+  isolation: isolate;
 }
 
 .rsvp-modal__backdrop {
   animation: rsvp-fade-in 280ms ease both;
+  touch-action: none;
+}
+
+.rsvp-modal__body {
+  -webkit-overflow-scrolling: touch;
+}
+
+.rsvp-modal__footer {
+  position: relative;
+  z-index: 2;
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--ivory) 82%, transparent),
+    var(--ivory)
+  );
+}
+
+.rsvp-modal__action {
+  width: 100%;
+  max-width: none;
+  min-height: 3rem;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .rsvp-modal__action {
+    width: auto;
+    max-width: 18rem;
+    margin-inline: auto;
+    display: flex;
+  }
 }
 
 .rsvp-modal__petals {
@@ -1485,8 +1524,15 @@ body {
 
 .rsvp-field--area {
   resize: vertical;
-  min-height: 7rem;
-  max-height: 14rem;
+  min-height: 5.5rem;
+  max-height: 10rem;
+}
+
+@media (min-width: 640px) {
+  .rsvp-field--area {
+    min-height: 7rem;
+    max-height: 14rem;
+  }
 }
 
 .rsvp-thanks {
@@ -1634,6 +1680,13 @@ body {
 @media (max-width: 639px) {
   .rsvp-modal {
     animation-name: rsvp-modal-in-mobile;
+    max-height: min(92dvh, calc(100% - env(safe-area-inset-top, 0px)));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .rsvp-modal__footer {
+    position: sticky;
+    bottom: 0;
   }
 
   @keyframes rsvp-modal-in-mobile {

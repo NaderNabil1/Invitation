@@ -49,17 +49,17 @@ export default function RsvpSection({ language }: RsvpSectionProps) {
             {copy.prompt[language]}
           </p>
 
-          <div className="rsvp-section__actions mt-9 flex w-full flex-col items-center gap-3.5 sm:mt-11 sm:flex-row sm:justify-center sm:gap-4">
+          <div className="rsvp-section__actions mt-9 flex w-full max-w-sm flex-col items-stretch gap-3.5 sm:mt-11 sm:max-w-none sm:flex-row sm:items-center sm:justify-center sm:gap-4">
             <button
               type="button"
-              className="invite-btn rsvp-section__accept"
+              className="invite-btn rsvp-section__accept w-full sm:w-auto"
               onClick={() => setModalKind("coming")}
             >
               {copy.acceptLabel[language]}
             </button>
             <button
               type="button"
-              className="invite-btn invite-btn--ghost rsvp-section__decline"
+              className="invite-btn invite-btn--ghost rsvp-section__decline w-full sm:w-auto"
               onClick={() => setModalKind("not-coming")}
             >
               {copy.declineLabel[language]}

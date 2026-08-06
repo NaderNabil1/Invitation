@@ -146,7 +146,7 @@ export default function RsvpModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="rsvp-modal relative z-10 flex max-h-[92dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-2xl border border-[var(--gold-muted)] bg-[var(--ivory)] shadow-2xl sm:max-h-[90dvh] sm:rounded-2xl"
+        className="rsvp-modal relative z-10 flex h-[min(92dvh,100%)] max-h-[92dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-2xl border border-[var(--gold-muted)] bg-[var(--ivory)] shadow-2xl sm:h-auto sm:max-h-[90dvh] sm:rounded-2xl"
       >
         <div className="rsvp-modal__petals" aria-hidden="true">
           <span className="rsvp-petal rsvp-petal--1" />
@@ -190,9 +190,9 @@ export default function RsvpModal({
           </button>
         </div>
 
-        <div className="relative min-h-0 flex-1 overflow-auto px-4 py-5 sm:px-6 sm:py-6">
+        <div className="relative flex min-h-0 flex-1 flex-col">
           {phase === "thanks" ? (
-            <div className="rsvp-thanks flex flex-col items-center px-2 py-6 text-center sm:py-8">
+            <div className="rsvp-modal__body rsvp-thanks flex flex-col items-center overflow-y-auto px-4 py-6 text-center sm:px-6 sm:py-8">
               <div className="rsvp-thanks__bloom" aria-hidden="true">
                 <FloralMotif
                   variant="bloom"
@@ -223,80 +223,99 @@ export default function RsvpModal({
               />
               <button
                 type="button"
-                className="invite-btn mt-8"
+                className="invite-btn rsvp-modal__action mt-8"
                 onClick={onClose}
               >
                 {copy.closeLabel[language]}
               </button>
             </div>
           ) : (
-            <form className="rsvp-form space-y-5" onSubmit={handleSubmit}>
-              <div className="text-start">
-                <label
-                  htmlFor={nameId}
-                  className="mb-2 block text-sm tracking-wide text-[var(--gold-deep)]"
-                >
-                  {copy.nameLabel[language]}
-                </label>
-                <input
-                  ref={nameInputRef}
-                  id={nameId}
-                  name="name"
-                  type="text"
-                  autoComplete="name"
-                  maxLength={120}
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                  placeholder={copy.namePlaceholder[language]}
-                  className="rsvp-field"
-                  disabled={phase === "submitting"}
-                  required
-                />
+            <form
+              className="rsvp-form flex min-h-0 flex-1 flex-col"
+              onSubmit={handleSubmit}
+            >
+              <div className="rsvp-modal__body min-h-0 flex-1 space-y-5 overflow-y-auto overscroll-contain px-4 py-5 sm:px-6 sm:py-6">
+                <div className="text-start">
+                  <label
+                    htmlFor={nameId}
+                    className="mb-2 block text-sm tracking-wide text-[var(--gold-deep)]"
+                  >
+                    {copy.nameLabel[language]}
+                  </label>
+                  <input
+                    ref={nameInputRef}
+                    id={nameId}
+                    name="name"
+                    type="text"
+                    autoComplete="name"
+                    enterKeyHint="next"
+                    maxLength={120}
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
+                    onFocus={(event) => {
+                      event.currentTarget.scrollIntoView({
+                        block: "center",
+                        behavior: "smooth",
+                      });
+                    }}
+                    placeholder={copy.namePlaceholder[language]}
+                    className="rsvp-field"
+                    disabled={phase === "submitting"}
+                    required
+                  />
+                </div>
+
+                <div className="text-start">
+                  <label
+                    htmlFor={messageId}
+                    className="mb-2 block text-sm tracking-wide text-[var(--gold-deep)]"
+                  >
+                    {isComing
+                      ? copy.messageLabel[language]
+                      : copy.reasonLabel[language]}
+                  </label>
+                  <textarea
+                    id={messageId}
+                    name="message"
+                    rows={3}
+                    enterKeyHint="done"
+                    maxLength={1000}
+                    value={message}
+                    onChange={(event) => setMessage(event.target.value)}
+                    onFocus={(event) => {
+                      event.currentTarget.scrollIntoView({
+                        block: "center",
+                        behavior: "smooth",
+                      });
+                    }}
+                    placeholder={
+                      isComing
+                        ? copy.messagePlaceholder[language]
+                        : copy.reasonPlaceholder[language]
+                    }
+                    className="rsvp-field rsvp-field--area"
+                    disabled={phase === "submitting"}
+                    required
+                  />
+                </div>
+
+                {validationHint ? (
+                  <p className="text-sm text-[var(--gold-deep)]" role="alert">
+                    {copy.requiredHint[language]}
+                  </p>
+                ) : null}
+
+                {phase === "error" ? (
+                  <p className="text-sm text-[var(--gold-deep)]" role="alert">
+                    {copy.errorMessage[language]}
+                  </p>
+                ) : null}
               </div>
 
-              <div className="text-start">
-                <label
-                  htmlFor={messageId}
-                  className="mb-2 block text-sm tracking-wide text-[var(--gold-deep)]"
-                >
-                  {isComing
-                    ? copy.messageLabel[language]
-                    : copy.reasonLabel[language]}
-                </label>
-                <textarea
-                  id={messageId}
-                  name="message"
-                  rows={4}
-                  maxLength={1000}
-                  value={message}
-                  onChange={(event) => setMessage(event.target.value)}
-                  placeholder={
-                    isComing
-                      ? copy.messagePlaceholder[language]
-                      : copy.reasonPlaceholder[language]
-                  }
-                  className="rsvp-field rsvp-field--area"
-                  disabled={phase === "submitting"}
-                  required
-                />
-              </div>
-
-              {validationHint ? (
-                <p className="text-sm text-[var(--gold-deep)]" role="alert">
-                  {copy.requiredHint[language]}
-                </p>
-              ) : null}
-
-              {phase === "error" ? (
-                <p className="text-sm text-[var(--gold-deep)]" role="alert">
-                  {copy.errorMessage[language]}
-                </p>
-              ) : null}
-
-              <div className="flex flex-col items-center gap-3 pt-1 sm:flex-row sm:justify-center">
+              <div className="rsvp-modal__footer shrink-0 border-t border-[var(--gold-muted)]/50 px-4 py-4 sm:px-6 sm:py-5">
                 <button
                   type="submit"
-                  className="invite-btn"
+                  className="invite-btn rsvp-modal__action"
                   disabled={phase === "submitting"}
                 >
                   {phase === "submitting"
